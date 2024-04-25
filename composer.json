@@ -1,0 +1,11 @@
+{
+    "name": "vendor/vendor",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Vendor\\": "src/"
+        }
+    },
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.0"
+    }
+}
