@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+
+
+RewriteRule ^dashboard$ layout.php [L]
+RewriteRule ^importdata$ layout.php?module=importdata [L]
+RewriteRule ^preprocessing$ layout.php?module=preprocessing [L]
+RewriteRule ^labelling$ layout.php?module=labelling [L]
+RewriteRule ^splitdata$ layout.php?module=splitdata [L]
+RewriteRule ^modelling$ layout.php?module=modelling [L]
+RewriteRule ^pengujian$ layout.php?module=pengujian [L]
+RewriteRule ^visualisasidata$ layout.php?module=visualisasidata [L]
+
+
+</IfModule>
