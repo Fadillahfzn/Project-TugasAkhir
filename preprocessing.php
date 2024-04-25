@@ -58,7 +58,101 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-b-30 shadow-sm bg-body-tertiary">
+                                    <div class="card-header shadow-sm bg-body-tertiary">
+                                        <h6 class="card-title">Data Real</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Full Text</th>
+                                                    <th>Created At</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                                    include "koneksi.php";
+
+                                                    $no = 1;
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
+                                                    while ($row = mysqli_fetch_assoc($query)) {
+                                                    ?>
+                                                            <tr>
+                                                                <!-- <td><?= $no++; ?></td> -->
+                                                                <td><?= $row['username']; ?></td>
+                                                                <td><?= $row['full_text']; ?></td>
+                                                                <td><?= $row['created_at']; ?></td>
+                                                            </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <button class="btn btn-primary btn-block">Preprocessing</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-b-30 shadow-sm bg-body-tertiary">
+                                    <div class="card-header shadow-sm bg-body-tertiary">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="card-title">Data Clean</h6>
+                                            <button class="btn btn-sm btn-danger">Hapus Data Clean</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Full Text</th>
+                                                    <th>Created At</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                                    include "koneksi.php";
+
+                                                    $no = 1;
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
+                                                    while ($row = mysqli_fetch_assoc($query)) {
+                                                    ?>
+                                                            <tr>
+                                                                <!-- <td><?= $no++; ?></td> -->
+                                                                <td><?= $row['username']; ?></td>
+                                                                <td><?= $row['full_text']; ?></td>
+                                                                <td><?= $row['created_at']; ?></td>
+                                                            </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- end row -->
+
+
+        <!-- end row -->
+ 

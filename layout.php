@@ -13,7 +13,11 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <link rel="shortcut icon" href="assets/icons/font-awesome">
 
-    
+    <link href="plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
 
     <!-- morris css -->
     <link rel="stylesheet" href="../plugins/morris/morris.css">
@@ -149,9 +153,25 @@
         <script src="assets/js/jquery.nicescroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
 
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
         <!--Morris Chart-->
-        <script src="../plugins/morris/morris.min.js"></script>
-        <script src="../plugins/raphael/raphael.min.js"></script>
+        <script src="plugins/morris/morris.min.js"></script>
+        <script src="plugins/raphael/raphael.min.js"></script>
+
+        <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+        <!-- <script src="assets/pages/datatables.init.js"></script> -->
+        <script>
+            $(document).ready(function() {
+                $('.datatable').DataTable({
+                    "lengthMenu": [ [3, 10, 25, 50, -1], [3, 10, 25, 50, "All"] ], // Menentukan opsi jumlah entri
+                    "pageLength": 3 // Mengatur jumlah entri default menjadi 5
+                });
+            })
+        </script>
 
         <!-- dashboard js -->
         <script src="assets/pages/dashboard.int.js"></script>        
