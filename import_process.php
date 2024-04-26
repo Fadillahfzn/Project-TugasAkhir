@@ -16,6 +16,7 @@ if ($_FILES['excel_file']['error'] == 0) {
     $spreadsheet = $reader->load($inputFileName);
 
     $sheetData = $spreadsheet->getActiveSheet()->toArray();
+    $sheetData = array_slice($sheetData, 1);
     foreach ($sheetData as $row) {
         // Sesuaikan indeks array dengan struktur file Excel Anda
         $conversation_id_str = $row[0];
@@ -41,7 +42,7 @@ if ($_FILES['excel_file']['error'] == 0) {
         // $pdo->query($sql);
     }
 
-    echo "Import berhasil!";
+    header("location: " . $_SERVER['HTTP_REFERER']);
 } else {
     echo "Error: " . $_FILES['excel_file']['error'];
 }

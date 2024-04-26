@@ -82,7 +82,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="labeling" class="waves-effect">
+                            <a href="labelling" class="waves-effect">
                                 <i class="dripicons-home"></i> Labeling
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pengujian.htphpml" class="waves-effect">
+                            <a href="pengujian" class="waves-effect">
                                 <i class="dripicons-home"></i> Pengujian
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>

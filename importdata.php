@@ -75,9 +75,14 @@
                 <div class="row">
                             <div class="col-12">
                                 <div class="card m-b-30 shadow-sm bg-body-tertiary">
-                                    <div class="card-header shadow-sm bg-body-tertiary">
-                                        <h6 class="card-title">Data Real</h6>
-                                    </div>
+                                        <div class="card-header shadow-sm bg-body-tertiary">
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="card-title">Data Real</h6>
+                                                    <form action="functions/import_data.php?aksi=hapus" method="POST" style="display: inline;">
+                                                        <button class="btn btn-sm btn-danger">Hapus Data</button>
+                                                    </form>
+                                            </div>
+                                        </div>
                                     <div class="card-body">
                                         <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>

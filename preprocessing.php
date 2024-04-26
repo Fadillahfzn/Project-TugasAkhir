@@ -70,7 +70,6 @@
                                                 <tr>
                                                     <th>Username</th>
                                                     <th>Full Text</th>
-                                                    <th>Created At</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -85,7 +84,6 @@
                                                                 <!-- <td><?= $no++; ?></td> -->
                                                                 <td><?= $row['username']; ?></td>
                                                                 <td><?= $row['full_text']; ?></td>
-                                                                <td><?= $row['created_at']; ?></td>
                                                             </tr>
                                                     <?php
                                                     }
@@ -100,7 +98,10 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-12">
-                                <button class="btn btn-primary btn-block">Preprocessing</button>
+                            <form method="post" action="functions/preprocessing.php?aksi=proses" style="display: inline;">
+                                                    <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
+                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Preprocessing</button>
+                                                </form>
                             </div>
                         </div>
                         <div class="row">
@@ -117,9 +118,8 @@
                                         <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>Username</th>
-                                                    <th>Full Text</th>
-                                                    <th>Created At</th>
+                                                    <th>No</th>
+                                                    <th>Clean Text</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -127,14 +127,13 @@
                                                     include "koneksi.php";
 
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_clean ORDER BY id DESC");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
                                                                 <!-- <td><?= $no++; ?></td> -->
-                                                                <td><?= $row['username']; ?></td>
-                                                                <td><?= $row['full_text']; ?></td>
-                                                                <td><?= $row['created_at']; ?></td>
+                                                                <td><?= $no++; ?></td>
+                                                                <td><?= $row['proses']; ?></td>
                                                             </tr>
                                                     <?php
                                                     }

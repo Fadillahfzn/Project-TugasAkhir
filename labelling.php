@@ -58,6 +58,54 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-4 row">
+                                            <div class="col-6">
+                                                <button class="btn btn-primary">Labelling Data Otomatis</button>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <table id="datatable" class="table table-bordered dt-responsive " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="">Username</th>
+                                                        <th class="">Clean Text</th>
+                                                        <th class="">Label Sentimen</th>
+                                                        <th class="">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    <?php
+                                                    // include "config/koneksi.php";
+                                                    
+                                                    // $no = 1;
+                                                    // $query = mysqli_query($koneksi, "SELECT * FROM raw_data ORDER BY id DESC");
+                                                    // while ($row = mysqli_fetch_assoc($query)) {
+                                                        ?>
+                                                    <tr>
+                                                        <!-- <td><?= $no++; ?></td> -->
+                                                        <!-- <td class=""><?= $row['username']; ?></td>
+                                                        <td class=""><?= $row['created_at']; ?></td>
+                                                        <td class=""><?= $row['full_text']; ?></td> -->
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <?php
+                                                    // }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
