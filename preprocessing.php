@@ -77,7 +77,7 @@
                                                     include "koneksi.php";
 
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id ASC");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
@@ -127,13 +127,13 @@
                                                     include "koneksi.php";
 
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_clean ORDER BY id DESC");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM proses");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
                                                                 <!-- <td><?= $no++; ?></td> -->
                                                                 <td><?= $no++; ?></td>
-                                                                <td><?= $row['proses']; ?></td>
+                                                                <td><?= $row['processed_text']; ?></td>
                                                             </tr>
                                                     <?php
                                                     }
