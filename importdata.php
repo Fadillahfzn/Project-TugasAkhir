@@ -56,6 +56,7 @@
                                         <form class="form-group" action="import_process.php" method="POST" enctype="multipart/form-data">
                                             <div class="col-4 mb-3">
                                                 <input type="file" name="excel_file" id="excel_file" class="form-control-file filestyle" accept=".xls, .xlsx, .csv" data-buttonname="btn-secondary">
+                                                <!-- <input type="file" name="excel_file" id=""> -->
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <button type="submit" class="btn btn-primary waves-effect waves-light btn-md">Submit</button>

@@ -58,11 +58,22 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                            <form method="post" action="functions/preprocessing.php?aksi=proses" style="display: inline;">
+                                                    <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
+                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Preprocessing</button>
+                                                </form>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="card m-b-30 shadow-sm bg-body-tertiary">
                                     <div class="card-header shadow-sm bg-body-tertiary">
-                                        <h6 class="card-title">Data Real</h6>
+                                        <h6 class="card-title">Data Preprocessing</h6>
                                     </div>
                                     <div class="card-body">
                                         <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -70,6 +81,7 @@
                                                 <tr>
                                                     <th>Username</th>
                                                     <th>Full Text</th>
+                                                    <th>Clean Text</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -77,13 +89,14 @@
                                                     include "koneksi.php";
 
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id ASC");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM proses");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
                                                                 <!-- <td><?= $no++; ?></td> -->
                                                                 <td><?= $row['username']; ?></td>
                                                                 <td><?= $row['full_text']; ?></td>
+                                                                <td><?= $row['processed_text']; ?></td>
                                                             </tr>
                                                     <?php
                                                     }
@@ -96,15 +109,7 @@
                             </div>
                             <!-- end col -->
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-12">
-                            <form method="post" action="functions/preprocessing.php?aksi=proses" style="display: inline;">
-                                                    <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
-                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Preprocessing</button>
-                                                </form>
-                            </div>
-                        </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-12">
                                 <div class="card m-b-30 shadow-sm bg-body-tertiary">
                                     <div class="card-header shadow-sm bg-body-tertiary">
@@ -131,7 +136,7 @@
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
-                                                                <!-- <td><?= $no++; ?></td> -->
+                                                                <?= $no++; ?>
                                                                 <td><?= $no++; ?></td>
                                                                 <td><?= $row['processed_text']; ?></td>
                                                             </tr>
@@ -144,8 +149,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- end col -->
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
