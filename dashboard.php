@@ -67,6 +67,7 @@
 
                 <!-- row1 -->
                 <div class="row">
+                    
                     <div class="col-xl-4 col-md-6 "> 
                             <div class="card mini-stat font-weight-bold shadow-md bg-body-tertiary">
                                 <div class="card-header p-1 bg-light">
@@ -85,7 +86,7 @@
                                             ?>   
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6 "> 

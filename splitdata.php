@@ -58,6 +58,66 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row button-split">
+                                            <div class="col-6">
+                                                <form action="functions/split_data.php" method="post">
+                                                    <button class="btn btn-success btn-block">Split Data</button>
+                                                </form>    
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-danger btn-block">Hapus Data Split</button>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4 info-split">
+                                            <div class="col-6">
+                                                <div class="card mini-stat font-weight-bold shadow-md bg-body-tertiary">
+                                                    <div class="card-header p-1 bg-light">
+                                                        <h6 class="card-title text-uppercase mt-0  text-center mt-2">
+                                                                Jumlah Data Training
+                                                        </h6>
+                                                    </div>
+                                                    <div class="p-4 mini-stat-desc text-center bg-primary">
+                                                        <div class="clearfix">      
+                                                                <?php
+                                                                include "koneksi.php";
+                                                                $query = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM data_training");
+                                                                $row = mysqli_fetch_assoc($query);
+                                                                $count = $row['total'];
+                                                                echo "<h2>$count</h2>"; // Tambahkan echo di sini
+                                                                ?>   
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="card mini-stat font-weight-bold shadow-md bg-body-tertiary">
+                                                    <div class="card-header p-1 bg-light">
+                                                        <h6 class="card-title text-uppercase mt-0  text-center mt-2">
+                                                                Jumlah Data Testing
+                                                        </h6>
+                                                    </div>
+                                                    <div class="p-4 mini-stat-desc text-center bg-primary">
+                                                        <div class="clearfix">      
+                                                                <?php
+                                                                include "koneksi.php";
+                                                                $query = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM data_testing");
+                                                                $row = mysqli_fetch_assoc($query);
+                                                                $count = $row['total'];
+                                                                echo "<h2>$count</h2>"; // Tambahkan echo di sini
+                                                                ?>   
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
