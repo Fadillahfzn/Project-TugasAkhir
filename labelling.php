@@ -68,36 +68,38 @@
                                             </div>
                                         </div>
                                         <div class="">
-                                            <table id="datatable" class="table table-bordered dt-responsive " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead>
                                                     <tr>
                                                         <th class="">Username</th>
                                                         <th class="">Clean Text</th>
-                                                        <th class="">Label Sentimen</th>
+                                                        <th class="">Sentimen</th>
                                                         <th class="">Action</th>
                                                     </tr>
                                                 </thead>
                                                 
                                                 <tbody>
                                                     <?php
-                                                    // include "config/koneksi.php";
-                                                    
-                                                    // $no = 1;
-                                                    // $query = mysqli_query($koneksi, "SELECT * FROM raw_data ORDER BY id DESC");
-                                                    // while ($row = mysqli_fetch_assoc($query)) {
-                                                        ?>
-                                                    <tr>
-                                                        <!-- <td><?= $no++; ?></td> -->
-                                                        <!-- <td class=""><?= $row['username']; ?></td>
-                                                        <td class=""><?= $row['created_at']; ?></td>
-                                                        <td class=""><?= $row['full_text']; ?></td> -->
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                    include "koneksi.php";
+                                                    $no = 1;
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM proses");
+                                                    while ($row = mysqli_fetch_assoc($query)) {
+                                                    ?>
+                                                    <tr data-id="<?= $row['id']; ?>">                                                   
+                                                        <td><?= $row['username']; ?></td>
+                                                        <td><?= $row['full_text']; ?></td>
+                                                        <td class="col-2">
+                                                            <select class="form-control sentiment-dropdown" data-id="<?= $row['id']; ?>">
+                                                                <option value="" selected>-- Pilih --</option>
+                                                                <option value="Positif" <?php echo ($row['sentiment'] == 'Positif') ? 'selected' : ''; ?>>Positif</option>
+                                                                <option value="Negatif" <?php echo ($row['sentiment'] == 'Negatif') ? 'selected' : ''; ?>>Negatif</option>
+                                                                <option value="Netral" <?php echo ($row['sentiment'] == 'Negatif') ? 'selected' : ''; ?>>Netral</option>
+                                                            </select>
+                                                        </td>
                                                         <td></td>
                                                     </tr>
-                                                    <?php
-                                                    // }
+                                                    <?php   
+                                                    }
                                                     ?>
                                                 </tbody>
                                             </table>
@@ -110,3 +112,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                    // Memilih semua dropdown sentiment
+                    var sentimentDropdowns = document.querySelectorAll('.sentiment-dropdown');
+
+                    // Menambahkan event listener untuk setiap dropdown
+                    sentimentDropdowns.forEach(function (dropdown) {
+                        dropdown.addEventListener('change', function () {
+                            var id = dropdown.getAttribute('data-id');
+                            var sentiment = dropdown.value;
+
+                            // Kirim permintaan Ajax ke server untuk memperbarui data
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', 'update_sentiment.php', true);
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr.onload = function () {
+                                if (xhr.status === 200) {
+                                    console.log('Data updated successfully');
+                                } else {
+                                    console.log('Failed to update data');
+                                }
+                            };
+                            xhr.send('id=' + id + '&sentiment=' + sentiment);
+                        });
+                    });
+                });
+        </script>

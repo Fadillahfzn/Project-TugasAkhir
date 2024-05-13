@@ -97,7 +97,13 @@
                                 </div>
                                 <div class="p-4 mini-stat-desc text-center bg-info">
                                     <div class="clearfix">      
-                                        <h2>0</h2>
+                                    <?php
+                                            include "koneksi.php";
+                                            $query = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM proses");
+                                            $row = mysqli_fetch_assoc($query);
+                                            $count = $row['total'];
+                                            echo "<h2>$count</h2>"; // Tambahkan echo di sini
+                                            ?>   
                                     </div>
                                 </div>
                         </div>
