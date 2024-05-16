@@ -63,8 +63,14 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="mb-4 row">
-                                            <div class="col-6">
+                                            <div class="col-6 p-2">
+                                                <button class="btn btn-primary">Tampilkan Data</button>
                                                 <button class="btn btn-primary">Labelling Data Otomatis</button>
+                                            </div>
+                                            <div class="col-6 p-2">
+                                            <form action="functions/import_data.php?aksi=hapus" method="POST" style="display: inline;">
+                                                <button class="btn btn-sm btn-danger">Hapus Data</button>
+                                            </form>
                                             </div>
                                         </div>
                                         <div class="">

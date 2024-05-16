@@ -62,7 +62,7 @@
 
                         <div class="row mb-4">
                             <div class="col-12">
-                            <form method="post" action="functions/preprocessing.php?aksi=proses" style="display: inline;">
+                            <form method="post" action="" style="display: inline;">
                                                     <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
                                                     <button type="submit" name="proses" class="btn btn-block btn-primary">Preprocessing</button>
                                                 </form>
@@ -73,7 +73,12 @@
                             <div class="col-12">
                                 <div class="card m-b-30 shadow-sm bg-body-tertiary">
                                     <div class="card-header shadow-sm bg-body-tertiary">
-                                        <h6 class="card-title">Data Preprocessing</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="card-title">Data Preprocessing</h6>
+                                            <form action="functions/preprocessing.php?aksi=hapus" method="POST" style="display: inline;">
+                                                <button class="btn btn-sm btn-danger">Hapus Data</button>
+                                            </form>
+                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
