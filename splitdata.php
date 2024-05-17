@@ -69,7 +69,9 @@
                                                 </form>    
                                             </div>
                                             <div class="col-6">
-                                                <button class="btn btn-danger btn-block">Hapus Data Split</button>
+                                                <form action="functions/split_data.php?aksi=hapus" method="post">
+                                                    <button class="btn btn-danger btn-block">Hapus Split Data</button>
+                                                </form>    
                                             </div>
                                         </div>
                                         <div class="row mt-4 info-split">
