@@ -1,4 +1,12 @@
-        <div class="content-page">
+    <?php
+    include "koneksi.php";
+
+    $no = 1;
+    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
+    $total = mysqli_num_rows($query);
+    ?>
+    
+    <div class="content-page">
             <!-- Start content -->
             <div class="content">
                 <!-- Top Bar Start -->
@@ -55,11 +63,11 @@
                                         </ul>
                                         <form class="form-group" action="import_process.php" method="POST" enctype="multipart/form-data">
                                             <div class="col-4 mb-3">
-                                                <input type="file" name="excel_file" id="excel_file" class="form-control-file filestyle" accept=".xls, .xlsx, .csv" data-buttonname="btn-secondary">
+                                                <input type="file" name="excel_file" id="excel_file" class="form-control-file filestyle" accept=".xls, .xlsx, .csv" data-buttonname="btn-secondary" onchange="onChangeFile(this.value)" <?php if($total != 0) echo 'disabled' ?>>
                                                 <!-- <input type="file" name="excel_file" id=""> -->
                                             </div>
                                             <div class="col-4 mb-3">
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light btn-md">Submit</button>
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light btn-md" id="btnSubmit" disabled>Submit</button>
                                             </div>
                                         </form>
                                     </div>
@@ -79,9 +87,7 @@
                                     <div class="card-header shadow-sm bg-body-tertiary">
                                         <div class="d-flex justify-content-between">
                                             <h6 class="card-title">Data Real</h6>
-                                            <form action="functions/import_data.php?aksi=hapus" method="POST" style="display: inline;">
-                                                <button class="btn btn-sm btn-danger">Hapus Data</button>
-                                            </form>
+                                                <button type="button" name="delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Hapus Data</button>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -95,10 +101,6 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                                                    include "koneksi.php";
-
-                                                    $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
@@ -124,3 +126,90 @@
 
             <!-- end row -->
         </div>
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myModalLabel">Modal Heading</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Apakah anda yakin ingin menghapus data ini?</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                            <form method="post" action="functions/import_data.php?aksi=hapus" style="display: inline;">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+
+        <script>
+                function onChangeFile(value) {
+                    document.getElementById("btnSubmit").disabled = false;
+                }
+        </script>
+
+            <script src="assets/libs/jquery/jquery.min.js"></script>
+
+            <!-- sample modal content -->
+            <!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title mt-0" id="myModalLabel">Modal Heading</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h5 class="font-16">Overflowing text to show scroll behavior</h5>
+                                                                    <p>Cras mattis consectetur purus sit amet fermentum.
+                                                                        Cras justo odio, dapibus ac facilisis in,
+                                                                        egestas eget quam. Morbi leo risus, porta ac
+                                                                        consectetur ac, vestibulum at eros.</p>
+                                                                    <p>Praesent commodo cursus magna, vel scelerisque
+                                                                        nisl consectetur et. Vivamus sagittis lacus vel
+                                                                        augue laoreet rutrum faucibus dolor auctor.</p>
+                                                                    <p>Aenean lacinia bibendum nulla sed consectetur.
+                                                                        Praesent commodo cursus magna, vel scelerisque
+                                                                        nisl consectetur et. Donec sed odio dui. Donec
+                                                                        ullamcorper nulla non metus auctor
+                                                                        fringilla.</p>
+                                                                    <p>Cras mattis consectetur purus sit amet fermentum.
+                                                                        Cras justo odio, dapibus ac facilisis in,
+                                                                        egestas eget quam. Morbi leo risus, porta ac
+                                                                        consectetur ac, vestibulum at eros.</p>
+                                                                    <p>Praesent commodo cursus magna, vel scelerisque
+                                                                        nisl consectetur et. Vivamus sagittis lacus vel
+                                                                        augue laoreet rutrum faucibus dolor auctor.</p>
+                                                                    <p>Aenean lacinia bibendum nulla sed consectetur.
+                                                                        Praesent commodo cursus magna, vel scelerisque
+                                                                        nisl consectetur et. Donec sed odio dui. Donec
+                                                                        ullamcorper nulla non metus auctor
+                                                                        fringilla.</p>
+                                                                    <p>Cras mattis consectetur purus sit amet fermentum.
+                                                                        Cras justo odio, dapibus ac facilisis in,
+                                                                        egestas eget quam. Morbi leo risus, porta ac
+                                                                        consectetur ac, vestibulum at eros.</p>
+                                                                    <p>Praesent commodo cursus magna, vel scelerisque
+                                                                        nisl consectetur et. Vivamus sagittis lacus vel
+                                                                        augue laoreet rutrum faucibus dolor auctor.</p>
+                                                                    <p>Aenean lacinia bibendum nulla sed consectetur.
+                                                                        Praesent commodo cursus magna, vel scelerisque
+                                                                        nisl consectetur et. Donec sed odio dui. Donec
+                                                                        ullamcorper nulla non metus auctor
+                                                                        fringilla.</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->

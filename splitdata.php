@@ -70,7 +70,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <form action="functions/split_data.php?aksi=hapus" method="post">
-                                                    <button class="btn btn-danger btn-block">Hapus Split Data</button>
+                                                <button type="button" name="delete" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal">Hapus Data</button>
                                                 </form>    
                                             </div>
                                         </div>
@@ -124,3 +124,25 @@
                 </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myModalLabel">Modal Heading</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Apakah anda yakin ingin menghapus data ini?</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                            <form method="post" action="functions/split_data.php?aksi=hapus" style="display: inline;">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
