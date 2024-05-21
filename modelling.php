@@ -59,6 +59,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mb-4">
+                            <div class="col-12">
+                            <form method="post" action="" style="display: inline;">
+                                                    <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
+                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Mulai Modelling</button>
+                                                </form>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

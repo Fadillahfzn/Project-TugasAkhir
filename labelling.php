@@ -87,10 +87,10 @@
                                                     <?php
                                                     include "koneksi.php";
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM proses");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM label");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
-                                                    <tr data-id="<?= $row['id']; ?>">                                                   
+                                                        <tr data-id="<?= $row['id']; ?>">                                                   
                                                         <td><?= $row['username']; ?></td>
                                                         <td><?= $row['full_text']; ?></td>
                                                         <td class="col-2">
@@ -113,6 +113,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row label-lexicon">
                             <div class="col-12">
                                 <div class="card">
@@ -134,7 +135,6 @@
                                                         <th class="">Username</th>
                                                         <th class="">Clean Text</th>
                                                         <th class="">Sentimen</th>
-                                                        <th class="">Action</th>
                                                     </tr>
                                                 </thead>
                                                 
@@ -142,21 +142,26 @@
                                                     <?php
                                                     include "koneksi.php";
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM proses");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM label_lexicon");
+                                                    $query_positif = mysqli_query($koneksi, "SELECT * FROM label_lexicon WHERE sentiment = 'positif'");
+                                                    $query_negatif = mysqli_query($koneksi, "SELECT * FROM label_lexicon WHERE sentiment = 'negatif'");
+                                                    $query_netral = mysqli_query($koneksi, "SELECT * FROM label_lexicon WHERE sentiment = 'netral'");
+                                                    $total_positif = mysqli_num_rows($query_positif);
+                                                    $total_negatif = mysqli_num_rows($query_negatif);
+                                                    $total_netral = mysqli_num_rows($query_netral);
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                     <tr data-id="<?= $row['id']; ?>">                                                   
                                                         <td><?= $row['username']; ?></td>
                                                         <td><?= $row['full_text']; ?></td>
-                                                        <td class="col-2">
+                                                        <td><?= $row['sentiment']; ?></td>
+                                                        <!-- <td class="col-2">
                                                             <select class="form-control sentiment-dropdown" data-id="<?= $row['id']; ?>">
                                                                 <option value="" selected>-- Pilih --</option>
                                                                 <option value="Positif" <?php echo ($row['sentiment'] == 'Positif') ? 'selected' : ''; ?>>Positif</option>
                                                                 <option value="Negatif" <?php echo ($row['sentiment'] == 'Negatif') ? 'selected' : ''; ?>>Negatif</option>
-                                                                <option value="Netral" <?php echo ($row['sentiment'] == 'Negatif') ? 'selected' : ''; ?>>Netral</option>
                                                             </select>
-                                                        </td>
-                                                        <td></td>
+                                                        </td> -->
                                                     </tr>
                                                     <?php   
                                                     }
@@ -167,6 +172,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <h5 class="mr-3">Positif : <?php echo $total_positif; ?></h5>
+                            <h5 class="mr-3">Negatif : <?php echo $total_negatif; ?></h5>
+                            <h5>Netral : <?php echo $total_netral; ?></h5>
                         </div>
                     </div>
                 </div>

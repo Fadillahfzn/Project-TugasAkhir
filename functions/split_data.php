@@ -274,7 +274,7 @@ function splitData(array $data, $testSize = 0.2) {
 }
 
 if (!isset($_SESSION['data_split_done'])) {  // Periksa session untuk mencegah split data berulang kali
-    $query = "SELECT * FROM proses";
+    $query = "SELECT * FROM label_lexicon";
     $stmt = $pdo->query($query);
     $data = $stmt->fetchAll();
     
