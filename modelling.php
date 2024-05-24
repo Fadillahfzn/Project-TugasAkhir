@@ -69,5 +69,53 @@
                             </div>
                     </div>
                 </div>
+
+                <div class="row label-lexicon">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="">
+                                            <table id="datatable" class="ddatatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="">No</th>
+                                                        <th class="">Model Name</th>
+                                                        <th class="">Positive Labels</th>
+                                                        <th class="">Negative Labels</th>
+                                                        <th class="">Total Sentiment</th>
+                                                        <th class="">Created At</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    <?php
+                                                    include "koneksi.php";
+                                                    $no = 1;
+                                                        $query = mysqli_query($koneksi, "SELECT * FROM data_model");
+                                                        $totalPositive = 0;
+                                                        $totalNegative = 0;
+                                                        while ($row = mysqli_fetch_assoc($query)) {
+                                                            $totalPositive += $row['positive_label'];
+                                                            $totalNegative += $row['negative_label'];
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>                                                   
+                                                        <td><?= $row['model_name']; ?></td>
+                                                        <td><?= $row['positive_label']; ?></td>
+                                                        <td><?= $row['negative_label']; ?></td>
+                                                        <td><?= $row['positive_label'] + $row['negative_label'] ; ?></td>
+                                                        <td><?= $row['created_at'];?></td>
+                                                        
+                                                    </tr>
+                                                    <?php   
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             </div>
         </div>

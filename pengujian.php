@@ -61,12 +61,104 @@
                     </div>
                     <div class="row mb-4">
                             <div class="col-12">
-                                <form method="post" action="functions/pengujian.php" style="display: inline;">
-                                                    <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
-                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Mulai Pengujian</button>
-                                </form>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row model">
+                                            <div class="col-12">
+                                                <h6 class="card-title">Pilih Model : </h6>
+                                                    <select class="form-control select2" name="model" id="model" onchange="onchangeModel(this.value)">
+                                                        <option hidden>-- Pilih Model --</option>
+                                                            <?php
+                                                            include "koneksi.php";
+                                                                    
+                                                            // Query untuk mengambil semua data dari tabel data_model
+                                                            $query = mysqli_query($koneksi, "SELECT model_name, positive_label, negative_label FROM data_model");
+                                                                    
+                                                            while ($row = mysqli_fetch_assoc($query)) {
+                                                            $totalLabels = $row['positive_label'] + $row['negative_label'];
+                                                            ?>
+                                                            <option value="<?= $totalLabels; ?>,<?= $row['positive_label']; ?>,<?= $row['negative_label']; ?>,<?= $row['model_name']; ?>">
+                                                            <?= $row['model_name']; ?>
+                                                            </option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="row data mt-4">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card mini-stat bg-primary">
+                                                    <div class="card-body mini-stat-img">
+                                                        <div class="text-white">
+                                                            <h6 class="text-uppercase mb-3 font-size-16 text-white">Jumlah Data Uji</h6>
+                                                            <?php
+                                                            include "koneksi.php";
+                                                            $query = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM data_testing");
+                                                            $row = mysqli_fetch_assoc($query);
+                                                            $count = $row['total'];
+                                                            echo "<h2 class='text-white'>$count</h2>"; // Tambahkan echo di sini
+                                                            ?>
+                                                            <!-- <h2 class='mb-4 text-white'>0</h2> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card mini-stat bg-primary">
+                                                    <div class="card-body mini-stat-img">
+                                                        <div class="text-white">
+                                                            <h6 class="text-uppercase mb-3 font-size-16 text-white">Jumlah Data Latih</h6>
+                                                            <h2 id="text_total">0</h2>
+                                                            <!-- <h2 class='mb-4 text-white'>0</h2> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row sentiment mt-2">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card mini-stat bg-primary">
+                                                    <div class="card-body mini-stat-img">
+                                                        <div class="text-white">
+                                                            <h6 class="text-uppercase mb-3 font-size-16 text-white">Sentiment Positive Data Latih</h6>
+                                                            <h2 id="text_positif">0</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card mini-stat bg-primary">
+                                                    <div class="card-body mini-stat-img">
+                                                        <div class="text-white">
+                                                            <h6 class="text-uppercase mb-3 font-size-16 text-white">Sentiment Negative Data Latih</h6>
+                                                            <h2 id="text_negatif">0</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form method="post" action="functions/tes.php" style="display: inline;">
+                                                            <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
+                                            <button type="submit" name="proses" class="btn btn-lg btn-block btn-primary">Mulai Pengujian</button>
+                                        </form>           
+                                </div>                        
                             </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+                function onchangeModel(value) {
+                    const myArray = value.split(",");
+                    document.getElementById("text_total").innerHTML = myArray[0];
+                    document.getElementById("text_positif").innerHTML = myArray[1];
+                    document.getElementById("text_negatif").innerHTML = myArray[2];
+                    document.getElementById("namaModel").value = myArray[3];
+                    document.getElementById("jumlahSentimen").value = myArray[0];
+                    document.getElementById("trainingPositif").value = myArray[1];
+                    document.getElementById("trainingNegatif").value = myArray[2];
+                    // document.getElementById("pengujianButton").disabled = false;
+                }
+            </script>
