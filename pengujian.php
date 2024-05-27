@@ -138,7 +138,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form method="post" action="functions/tes.php" style="display: inline;">
+                                        <form method="post" action="functions/pengujian.php" style="display: inline;">
                                                             <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
                                             <button type="submit" name="proses" class="btn btn-lg btn-block btn-primary">Mulai Pengujian</button>
                                         </form>           

@@ -67,7 +67,7 @@
                                                 <button class="btn btn-primary">Tampilkan Data</button>
                                             </div>
                                             <div class="col-6 p-2 text-right">
-                                            <form action="functions/import_data.php?aksi=hapus" method="POST" style="display: inline;">
+                                            <form action="functions/.php?aksi=hapus" method="POST" style="display: inline;">
                                                 <button class="btn mr-2 btn-danger">Hapus Data</button>
                                             </form>
                                             </div>
@@ -123,8 +123,8 @@
                                                 <button class="btn ml-2 btn-primary">Labelling Data Otomatis</button>
                                             </div>
                                             <div class="col-6 p-2 text-right">
-                                            <form action="functions/import_data.php?aksi=hapus" method="POST" style="display: inline;">
-                                                <button class="btn mr-2 btn-danger">Hapus Data</button>
+                                            <form action="functions/labelling.php?aksi=hapus" method="POST" style="display: inline;">
+                                            <button type="button" name="delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Hapus Data</button>
                                             </form>
                                             </div>
                                         </div>
@@ -209,3 +209,25 @@
                     });
                 });
         </script>
+
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myModalLabel">Modal Heading</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Apakah anda yakin ingin menghapus data ini?</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                            <form method="post" action="functions/labelling.php?aksi=hapus" style="display: inline;">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
