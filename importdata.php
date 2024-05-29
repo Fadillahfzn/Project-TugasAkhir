@@ -2,7 +2,7 @@
     include "koneksi.php";
 
     $no = 1;
-    $query = mysqli_query($koneksi, "SELECT * FROM data_raw ORDER BY id DESC");
+    $query = mysqli_query($koneksi, "SELECT * FROM data_raw");
     $total = mysqli_num_rows($query);
     ?>
     

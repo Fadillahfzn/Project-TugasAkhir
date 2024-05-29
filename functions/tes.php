@@ -180,7 +180,7 @@ $query->execute(['name' => $modelFile, 'path' => $modelFile]);
 echo "Model berhasil disimpan.\n";
 
 // Pengujian
-$modelFile = 'model_24-05-2024_12-50-39-PM.model';
+$modelFile = 'model_27-05-2024_12-11-42-PM.model';
 $modelData = file_get_contents($modelFile);
 list($vectorizer, $tfidfTransformer, $naiveBayes) = unserialize($modelData);
 

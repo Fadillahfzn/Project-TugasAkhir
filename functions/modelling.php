@@ -439,7 +439,7 @@ $query->execute(['name' => $modelFile, 'path' => $modelFile, 'totalPositive' => 
 
 echo "Model berhasil disimpan.\n";
 
-header("Location: " . $_SERVER['HTTP_REFERER']);
+header("Location: " . $_SERVER['HTTP_REFERER']);    
 // // Simpan model ke file
 // $dataModel = serialize([$vectorizer, $tfidfTransformer, $naiveBayes]);
 // $direktoriModel = __DIR__ . '/models';  // Pastikan direktori ini ada dan memiliki izin tulis
