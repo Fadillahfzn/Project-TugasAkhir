@@ -899,9 +899,9 @@ foreach ($tfidfVectors as $vector) {
 }
 
 // Menghitung data training
-$jumlahSentimen = 100;  // Update ini dengan jumlah data training sebenarnya
-$trainingPositif = 50;  // Update ini dengan jumlah data training positif sebenarnya
-$trainingNegatif = 50;  // Update ini dengan jumlah data training negatif sebenarnya
+$jumlahSentimen = 502;  // Update ini dengan jumlah data training sebenarnya
+$trainingPositif = 379;  // Update ini dengan jumlah data training positif sebenarnya
+$trainingNegatif = 123;  // Update ini dengan jumlah data training negatif sebenarnya
 
 $data = [
     'created_at' => date('Y-m-d H:i:s'),

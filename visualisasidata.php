@@ -123,31 +123,31 @@ $data = [
                                                     Tanggal : <b><?= date('d-m-Y H:i:s', strtotime($riwayat['created_at'])) ?></b><br>
                                                 </div>
                                                 <div class="mb-4 table-container">
-    <table border="1" style="width: 100%; border-collapse: collapse;">
-        <tr align="center">
-            <td colspan="2" rowspan="2">
-                Data Training = <b><?= $riwayat['data_training'] ?></b><br>
-                Data Testing = <b><?= $riwayat['data_testing'] ?></b>
-            </td>
-            <td colspan="2">Kelas Aktual</td>
-        </tr>
-        <tr align="center">
-            <td>Positive</td>
-            <td>Negative</td>
-        </tr>
-        <tr align="center">
-            <td rowspan="2">Kelas Prediksi</td>
-            <td>Positive</td>
-            <td><b>TP = <?= $riwayat['true_positive'] ?></b></td>
-            <td><b>FP = <?= $riwayat['false_positive'] ?></b></td>
-        </tr>
-        <tr align="center">
-            <td>Negative</td>
-            <td><b>FN = <?= $riwayat['false_negative'] ?></b></td>
-            <td><b>TN = <?= $riwayat['true_negative'] ?></b></td>
-        </tr>
-    </table>
-</div>
+                                                    <table border="1" style="width: 100%; border-collapse: collapse;">
+                                                        <tr align="center">
+                                                            <td colspan="2" rowspan="2">
+                                                                Data Training = <b><?= $riwayat['data_training'] ?></b><br>
+                                                                Data Testing = <b><?= $riwayat['data_testing'] ?></b>
+                                                            </td>
+                                                            <td colspan="2">Kelas Aktual</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Positive</td>
+                                                            <td>Negative</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td rowspan="2">Kelas Prediksi</td>
+                                                            <td>Positive</td>
+                                                            <td><b>TP = <?= $riwayat['true_positive'] ?></b></td>
+                                                            <td><b>FP = <?= $riwayat['false_positive'] ?></b></td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Negative</td>
+                                                            <td><b>FN = <?= $riwayat['false_negative'] ?></b></td>
+                                                            <td><b>TN = <?= $riwayat['true_negative'] ?></b></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
 
                                                 <div class="mb-4 formula">
                                                     <!-- <p>
@@ -257,7 +257,7 @@ $data = [
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <h4 class="card-title mb-4">Chart</h4>
-
+                                                        
                                                         <canvas id="bar" height="300"></canvas>
                                                     </div>
                                                 </div>
@@ -271,3 +271,49 @@ $data = [
                 </div>
             </div>
         </div>
+
+        <script src="plugins/chartjs/chart.min.js"></script>
+
+        <script>
+                // Mengambil data dari backend
+                fetch('functions/getChartData.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Menyiapkan data untuk chart
+                        const labels = data.map(item => item.created_at);
+                        const positiveData = data.map(item => item.predict_positive);
+                        const negativeData = data.map(item => item.predict_negative);
+
+                        // Membuat bar chart
+                        const ctx = document.getElementById('barChart').getContext('2d');
+                        const barChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [
+                                    {
+                                        label: 'Positive Predictions',
+                                        data: positiveData,
+                                        backgroundColor: '#36508b',
+                                        borderColor: '#36508b',
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: 'Negative Predictions',
+                                        data: negativeData,
+                                        backgroundColor: '#36508b',
+                                        borderColor: '#36508b',
+                                        borderWidth: 1
+                                    }
+                                ]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    });
+            </script>
