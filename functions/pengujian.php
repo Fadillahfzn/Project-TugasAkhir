@@ -681,7 +681,7 @@ error_reporting(E_ALL);
 // file_put_contents($modelFile, $model);
 
 
-// Koneksi ke database menggunakan PDO
+// Koneksi ke database menggunakan PDO sebelum last update
 $dsn = 'mysql:host=localhost;dbname=taproject';
 $username = 'root';
 $password = '';
@@ -697,7 +697,9 @@ try {
 // Definisikan kelas sebelum deserialisasi
 class Tokenizer {
     public function tokenize($text) {
-        return explode(' ', $text);
+        $text = strtolower($text);
+        $text = preg_replace("/\p{P}/u", "", $text);
+        return explode(' ', trim($text));
     }
 }
 
@@ -762,8 +764,13 @@ class TfIdfTransformer {
         foreach ($vectors as $vector) {
             $tfidfVector = [];
             foreach ($vector as $index => $termCount) {
-                $tf = $termCount / array_sum($vector);
-                $tfidfVector[] = $tf * $this->idf[$index];
+                if (isset($this->idf[$index])) { // Memeriksa apakah $index ada di $this->idf
+                    $tf = $termCount / array_sum($vector);
+                    $tfidfVector[] = $tf * $this->idf[$index];
+                } else {
+                    // Tindakan jika $index tidak ada di $this->idf, misalnya:
+                    $tfidfVector[] = 0; // Atau Anda dapat memilih untuk melewatkan indeks ini
+                }
             }
             $tfidfVectors[] = $tfidfVector;
         }
@@ -935,4 +942,205 @@ if ($query->rowCount() == 0) {
 
 
 header("location: " . $_SERVER['HTTP_REFERER']);
+
+
+// $dsn = 'mysql:host=localhost;dbname=taproject';
+// $username = 'root';
+// $password = '';
+// $options = [];
+
+// try {
+//     $pdo = new PDO($dsn, $username, $password, $options);
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     error_log('Connection failed: ' . $e->getMessage());
+//     exit('Connection failed.');
+// }
+
+// // Definisi kelas Tokenizer
+// class Tokenizer {
+//     public function tokenize($text) {
+//         $text = strtolower($text);
+//         $text = preg_replace("/\p{P}/u", "", $text);
+//         return explode(' ', trim($text));
+//     }
+// }
+
+// // Definisi kelas Vectorizer
+// class Vectorizer {
+//     private $tokenizer;
+//     private $vocabulary = [];
+
+//     public function __construct($tokenizer) {
+//         $this->tokenizer = $tokenizer;
+//     }
+
+//     public function fit($documents) {
+//         foreach ($documents as $document) {
+//             $tokens = $this->tokenizer->tokenize($document);
+//             foreach ($tokens as $token) {
+//                 if (!in_array($token, $this->vocabulary)) {
+//                     $this->vocabulary[] = $token;
+//                 }
+//             }
+//         }
+//     }
+
+//     public function transform($documents) {
+//         $vectors = [];
+//         foreach ($documents as $document) {
+//             $tokens = $this->tokenizer->tokenize($document);
+//             $vector = array_fill(0, count($this->vocabulary), 0);
+//             foreach ($tokens as $token) {
+//                 if (($index = array_search($token, $this->vocabulary)) !== false) {
+//                     $vector[$index]++;
+//                 }
+//             }
+//             $vectors[] = $vector;
+//         }
+//         return $vectors;
+//     }
+
+//     public function getVocabulary() {
+//         return $this->vocabulary;
+//     }
+// }
+
+// // Definisi kelas TfIdfTransformer
+// class TfIdfTransformer {
+//     private $idf = [];
+
+//     public function fit($vectors) {
+//         $numDocuments = count($vectors);
+//         $numTerms = count($vectors[0]);
+//         for ($i = 0; $i < $numTerms; $i++) {
+//             $docCount = 0;
+//             foreach ($vectors as $vector) {
+//                 if ($vector[$i] > 0) {
+//                     $docCount++;
+//                 }
+//             }
+//             $this->idf[$i] = log(($numDocuments + 1) / ($docCount + 1));
+//         }
+//     }
+
+//     public function transform($vectors) {
+//         $tfidfVectors = [];
+//         foreach ($vectors as $vector) {
+//             $tfidfVector = [];
+//             foreach ($vector as $index => $termCount) {
+//                 $tf = $termCount / array_sum($vector);
+//                 $tfidfVector[] = $tf * $this->idf[$index];
+//             }
+//             $tfidfVectors[] = $tfidfVector;
+//         }
+//         return $tfidfVectors;
+//     }
+// }
+
+// // Definisi kelas NaiveBayes
+// class NaiveBayes {
+//     private $classCounts = [];
+//     private $featureCounts = [];
+//     private $classProbabilities = [];
+//     private $featureProbabilities = [];
+
+//     public function train($vectors, $labels) {
+//         $numDocuments = count($vectors);
+//         $numTerms = count($vectors[0]);
+
+//         foreach ($labels as $label) {
+//             if (!isset($this->classCounts[$label])) {
+//                 $this->classCounts[$label] = 0;
+//             }
+//             $this->classCounts[$label]++;
+//         }
+
+//         foreach ($labels as $index => $label) {
+//             if (!isset($this->featureCounts[$label])) {
+//                 $this->featureCounts[$label] = array_fill(0, $numTerms, 0);
+//             }
+//             foreach ($vectors[$index] as $termIndex => $count) {
+//                 $this->featureCounts[$label][$termIndex] += $count;
+//             }
+//         }
+
+//         foreach ($this->classCounts as $label => $count) {
+//             $this->classProbabilities[$label] = $count / $numDocuments;
+//         }
+
+//         foreach ($this->featureCounts as $label => $counts) {
+//             $totalTerms = array_sum($counts);
+//             $this->featureProbabilities[$label] = array_map(function($count) use ($totalTerms, $numTerms) {
+//                 return ($count + 1) / ($totalTerms + $numTerms);
+//             }, $counts);
+//         }
+//     }
+
+//     public function predict($vector) {
+//         $scores = [];
+//         foreach ($this->classProbabilities as $label => $classProbability) {
+//             $score = log($classProbability);
+//             foreach ($vector as $termIndex => $count) {
+//                 if ($count > 0) {
+//                     $score += $count * log($this->featureProbabilities[$label][$termIndex]);
+//                 }
+//             }
+//             $scores[$label] = $score;
+//         }
+//         asort($scores);
+//         return array_keys($scores)[0];
+//     }
+// }
+
+// // Load model data
+// $modelFile = 'model_27-05-2024_12-11-42-PM.model';
+// if (file_exists($modelFile)) {
+//     $modelData = file_get_contents($modelFile);
+//     list($vectorizer, $tfidfTransformer, $naiveBayes) = unserialize($modelData);
+// } else {
+//     exit('Model file does not exist.');
+// }
+
+// // Test data retrieval and processing
+// $statement = $pdo->prepare("SELECT real_text, sentiment FROM data_testing");
+// $statement->execute();
+// $testings = $statement->fetchAll(PDO::FETCH_OBJ);
+
+// $truePositive = 0;
+// $trueNegative = 0;
+// $falsePositive = 0;
+// $falseNegative = 0;
+
+// foreach ($testings as $testing) {
+//     $newTextArray = [$testing->real_text];
+//     $vector = $vectorizer->transform($newTextArray);
+//     $tfidfVector = $tfidfTransformer->transform($vector);
+//     $predictedLabel = $naiveBayes->predict($tfidfVector[0]);
+
+//     if ($testing->sentiment == 'positif' && $predictedLabel == 'positif') {
+//         $truePositive++;
+//     } elseif ($testing->sentiment == 'positif' && $predictedLabel == 'negatif') {
+//         $falseNegative++;
+//     } elseif ($testing->sentiment == 'negatif' && $predictedLabel == 'negatif') {
+//         $trueNegative++;
+//     } else {
+//         $falsePositive++;
+//     }
+// }
+
+// // Insert or update results in database
+// $query = "INSERT INTO riwayat (created_at, true_positive, false_positive, true_negative, false_negative) VALUES (NOW(), :true_positive, :false_positive, :true_negative, :false_negative) ON DUPLICATE KEY UPDATE true_positive=:true_positive, false_positive=:false_positive, true_negative=:true_negative, false_negative=:false_negative";
+// $params = [
+//     ':true_positive' => $truePositive,
+//     ':false_positive' => $falsePositive,
+//     ':true_negative' => $trueNegative,
+//     ':false_negative' => $falseNegative
+// ];
+// $statement = $pdo->prepare($query);
+// $statement->execute($params);
+
+// echo "Data successfully updated or inserted into the database.";
+
+
 // ?>

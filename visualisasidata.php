@@ -47,6 +47,9 @@ $data = [
 ];
 ?>    
 
+<!-- chartjs js -->
+<script src="plugins/chartjs/chart.min.js"></script>
+<!-- <script src="assets/pages/chartjs.init.js"></script> -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
@@ -258,7 +261,7 @@ $data = [
                                                     <div class="col-12">
                                                         <h4 class="card-title mb-4">Chart</h4>
                                                         
-                                                        <canvas id="bar" height="300"></canvas>
+                                                        <canvas id="bar" height="200"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -285,7 +288,7 @@ $data = [
                         const negativeData = data.map(item => item.predict_negative);
 
                         // Membuat bar chart
-                        const ctx = document.getElementById('barChart').getContext('2d');
+                        const ctx = document.getElementById('bar').getContext('2d');
                         const barChart = new Chart(ctx, {
                             type: 'bar',
                             data: {
@@ -301,8 +304,8 @@ $data = [
                                     {
                                         label: 'Negative Predictions',
                                         data: negativeData,
-                                        backgroundColor: '#36508b',
-                                        borderColor: '#36508b',
+                                        backgroundColor: '#fb2212',
+                                        borderColor: '#fb2212',
                                         borderWidth: 1
                                     }
                                 ]

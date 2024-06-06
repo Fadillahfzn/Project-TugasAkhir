@@ -96,9 +96,9 @@
                                                         <td class="col-2">
                                                             <select class="form-control sentiment-dropdown" data-id="<?= $row['id']; ?>">
                                                                 <option value="" selected>-- Pilih --</option>
-                                                                <option value="Positif" <?php echo ($row['sentiment'] == 'Positif') ? 'selected' : ''; ?>>Positif</option>
-                                                                <option value="Negatif" <?php echo ($row['sentiment'] == 'Negatif') ? 'selected' : ''; ?>>Negatif</option>
-                                                                <option value="Netral" <?php echo ($row['sentiment'] == 'Negatif') ? 'selected' : ''; ?>>Netral</option>
+                                                                <option value="positif" <?php echo ($row['sentiment'] == 'positif') ? 'selected' : ''; ?>>Positif</option>
+                                                                <option value="negatif" <?php echo ($row['sentiment'] == 'negatif') ? 'selected' : ''; ?>>Negatif</option>
+                                                                <option value="netral" <?php echo ($row['sentiment'] == 'netral') ? 'selected' : ''; ?>>Netral</option>
                                                             </select>
                                                         </td>
                                                         <!-- <td></td> -->

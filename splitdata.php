@@ -88,12 +88,26 @@
                                                                 include "koneksi.php";
                                                                 $query = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM data_training");
                                                                 $row = mysqli_fetch_assoc($query);
-                                                                $count = $row['total'];
-                                                                echo "<h2>$count</h2>"; // Tambahkan echo di sini
+                                                                $count = $row['total']; // Tambahkan echo di sini
+                                                                $no = 1;
+                                                                // $query = mysqli_query($koneksi, "SELECT * FROM data_training");
+                                                                $query_positif = mysqli_query($koneksi, "SELECT * FROM data_training WHERE sentiment = 'positif'");
+                                                                $query_negatif = mysqli_query($koneksi, "SELECT * FROM data_training WHERE sentiment = 'negatif'");
+                                                                $query_netral = mysqli_query($koneksi, "SELECT * FROM data_training WHERE sentiment = 'netral'");
+                                                                $total_positif = mysqli_num_rows($query_positif);
+                                                                $total_negatif = mysqli_num_rows($query_negatif);
+                                                                $total_netral = mysqli_num_rows($query_netral);
+                                                                echo "<h2>$count</h2>";
+                                                                // echo "<h2>$total_positif</h2>";
+                                                                // echo "<h2>$total_negatif</h2>";
+                                                                // echo "<h2>$total_netral</h2>";
                                                                 ?>   
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <h6 class="mr-3">Positif : <?php echo $total_positif; ?></h6>
+                                                <h6 class="mr-3">Negatif : <?php echo $total_negatif; ?></h6>
+                                                <h6>Netral : <?php echo $total_netral; ?></h6>
                                             </div>
                                             <div class="col-6">
                                                 <div class="card mini-stat font-weight-bold shadow-md bg-body-tertiary">

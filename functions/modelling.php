@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+set_time_limit(300); // Set waktu eksekusi maksimal menjadi 300 detik (5 menit)
+
 // Koneksi ke database menggunakan PDO
 // $dsn = 'mysql:host=localhost;dbname=taproject';
 // $username = 'root';
