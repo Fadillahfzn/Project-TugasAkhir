@@ -82,6 +82,7 @@
                                                         <th class="">Model Name</th>
                                                         <th class="">Positive Labels</th>
                                                         <th class="">Negative Labels</th>
+                                                        <th class="">Netral Labels</th>
                                                         <th class="">Total Sentiment</th>
                                                         <th class="">Created At</th>
                                                     </tr>
@@ -94,16 +95,19 @@
                                                         $query = mysqli_query($koneksi, "SELECT * FROM data_model");
                                                         $totalPositive = 0;
                                                         $totalNegative = 0;
+                                                        $totalNetral = 0;
                                                         while ($row = mysqli_fetch_assoc($query)) {
                                                             $totalPositive += $row['positive_label'];
                                                             $totalNegative += $row['negative_label'];
+                                                            $totalNegative += $row['netral_label'];
                                                     ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>                                                   
                                                         <td><?= $row['model_name']; ?></td>
                                                         <td><?= $row['positive_label']; ?></td>
                                                         <td><?= $row['negative_label']; ?></td>
-                                                        <td><?= $row['positive_label'] + $row['negative_label'] ; ?></td>
+                                                        <td><?= $row['netral_label']; ?></td>
+                                                        <td><?= $row['positive_label'] + $row['negative_label'] + $row['netral_label']; ?></td>
                                                         <td><?= $row['created_at'];?></td>
                                                         
                                                     </tr>

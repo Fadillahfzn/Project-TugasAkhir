@@ -22,7 +22,8 @@ foreach ($riwayats as $riwayat) {
     $dataChart[] = [
         'created_at' => $riwayat['created_at'],
         'predict_positive' => (int) $riwayat['predict_positive'],
-        'predict_negative' => (int) $riwayat['predict_negative']
+        'predict_negative' => (int) $riwayat['predict_negative'],
+        'predict_netral' => (int) $riwayat['predict_netral']
     ];
 }
 

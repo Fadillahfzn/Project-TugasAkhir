@@ -132,71 +132,100 @@ $data = [
                                                                 Data Training = <b><?= $riwayat['data_training'] ?></b><br>
                                                                 Data Testing = <b><?= $riwayat['data_testing'] ?></b>
                                                             </td>
-                                                            <td colspan="2">Kelas Aktual</td>
+                                                            <td colspan="3">Kelas Aktual</td>
                                                         </tr>
                                                         <tr align="center">
                                                             <td>Positive</td>
+                                                            <td>Netral</td>
                                                             <td>Negative</td>
                                                         </tr>
                                                         <tr align="center">
-                                                            <td rowspan="2">Kelas Prediksi</td>
+                                                            <td rowspan="3">Kelas Prediksi</td>
                                                             <td>Positive</td>
                                                             <td><b>TP = <?= $riwayat['true_positive'] ?></b></td>
+                                                            <td><b>NtP = <?= $riwayat['positive_netral'] ?></b></td>
                                                             <td><b>FP = <?= $riwayat['false_positive'] ?></b></td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Netral</td>
+                                                            <td><b>PNt = <?= $riwayat['netral_positive'] ?></b></td>
+                                                            <td><b>TNt = <?= $riwayat['true_netral'] ?></b></td>
+                                                            <td><b>NNt = <?= $riwayat['netral_negative'] ?></b></td>
                                                         </tr>
                                                         <tr align="center">
                                                             <td>Negative</td>
                                                             <td><b>FN = <?= $riwayat['false_negative'] ?></b></td>
+                                                            <td><b>NtN = <?= $riwayat['negative_netral'] ?></b></td>
                                                             <td><b>TN = <?= $riwayat['true_negative'] ?></b></td>
                                                         </tr>
                                                     </table>
                                                 </div>
 
                                                 <div class="mb-4 formula">
-                                                    <!-- <p>
-                                                        <?php
-                                                        $accuracy = ($riwayat['true_positive'] + $riwayat['true_negative']) / 
-                                                                    ($riwayat['true_positive'] + $riwayat['true_negative'] + 
-                                                                    $riwayat['false_positive'] + $riwayat['false_negative']);
-                                                        ?>
-                                                        Accuracy = \( \frac{TP + TN}{TP + TN + FP + FN} \)
-                                                    </p> -->
-                                                    <p>
-                                                        Accuracy = \( \frac{TP + TN}{TP + TN + FP + FN} \) = \( \frac{<?= $riwayat['true_positive'] ?> + <?= $riwayat['true_negative'] ?>}
-                                                        {<?= $riwayat['true_positive'] ?> + <?= $riwayat['true_negative'] ?> + 
-                                                        <?= $riwayat['false_positive'] ?> + <?= $riwayat['false_negative'] ?>} \) = <?= number_format($accuracy, 4) ?>
-                                                    </p>
-                                                    <p>
-                                                        <?php
-                                                        $precision = $riwayat['true_positive'] / 
-                                                                    ($riwayat['true_positive'] + $riwayat['false_positive']);
-                                                        ?>
-                                                        Precision = \( \frac{TP}{TP + FP} \) = \( \frac{<?= $riwayat['true_positive'] ?>}
-                                                        {<?= $riwayat['true_positive'] ?> + <?= $riwayat['false_positive'] ?>} \) = <?= number_format($precision, 4) ?>
-                                                    </p>
-                                                    <p>
-                                                        <?php
-                                                        $recall = $riwayat['true_positive'] / 
-                                                                ($riwayat['true_positive'] + $riwayat['false_negative']);
-                                                        ?>
-                                                        Recall = \( \frac{TP}{TP + FN} \) = \( \frac{<?= $riwayat['true_positive'] ?>}
-                                                        {<?= $riwayat['true_positive'] ?> + <?= $riwayat['false_negative'] ?>} \) = <?= number_format($recall, 4) ?>
-                                                    </p>
+                                                       <!-- Accuracy -->
+                                                            <p>
+                                                                <?php
+                                                                $accuracy = ($riwayat['true_positive'] + $riwayat['true_negative'] + $riwayat['true_netral']) / 
+                                                                            ($riwayat['true_positive'] + $riwayat['true_negative'] + $riwayat['true_netral'] + 
+                                                                            $riwayat['false_positive'] + $riwayat['false_negative'] + 
+                                                                            $riwayat['positive_netral'] + $riwayat['netral_positive'] + $riwayat['netral_negative'] + $riwayat['negative_netral']);
+                                                                ?>
+                                                                Accuracy = \( \frac{TP + TN + TNt}{TP + TN + TNt + FP + FN + PNt + NtP + NtN} \)
+                                                                = \( \frac{<?= $riwayat['true_positive'] ?> + <?= $riwayat['true_negative'] ?> + <?= $riwayat['true_netral'] ?>}
+                                                                {<?= $riwayat['true_positive'] ?> + <?= $riwayat['true_negative'] ?> + <?= $riwayat['true_netral'] ?> + 
+                                                                <?= $riwayat['false_positive'] ?> + <?= $riwayat['false_negative'] ?> + 
+                                                                <?= $riwayat['positive_netral'] ?> + <?= $riwayat['netral_positive'] ?> + <?= $riwayat['netral_negative'] ?> + <?= $riwayat['negative_netral'] ?>} \) = <?= number_format($accuracy, 2) ?>
+                                                            </p>
+
+                                                            <!-- Precision for Each Class -->
+                                                            <p>
+                                                                <?php
+                                                                $precision_positive = $riwayat['true_positive'] / 
+                                                                                    ($riwayat['true_positive'] + $riwayat['false_positive'] + $riwayat['netral_positive']);
+                                                                $precision_neutral = $riwayat['true_netral'] / 
+                                                                                    ($riwayat['true_netral'] + $riwayat['positive_netral'] + $riwayat['negative_netral']);
+                                                                $precision_negative = $riwayat['true_negative'] / 
+                                                                                    ($riwayat['true_negative'] + $riwayat['false_negative'] + $riwayat['netral_negative']);
+                                                                $precision = ($precision_positive + $precision_neutral + $precision_negative) / 3;
+                                                                ?>
+                                                                Precision = \( \frac{Precision_{positive} + Precision_{neutral} + Precision_{negative}}{3} \) = \( \frac{<?= number_format($precision_positive, 4) ?> + <?= number_format($precision_neutral, 4) ?> + <?= number_format($precision_negative, 4) ?>}{3} \) = <?= number_format($precision, 2) ?>
+                                                            </p>
+
+                                                            <!-- Recall for Each Class -->
+                                                            <p>
+                                                                <?php
+                                                                $recall_positive = $riwayat['true_positive'] / 
+                                                                                ($riwayat['true_positive'] + $riwayat['false_negative'] + $riwayat['positive_netral']);
+                                                                $recall_neutral = $riwayat['true_netral'] / 
+                                                                                ($riwayat['true_netral'] + $riwayat['netral_positive'] + $riwayat['netral_negative']);
+                                                                $recall_negative = $riwayat['true_negative'] / 
+                                                                                ($riwayat['true_negative'] + $riwayat['false_positive'] + $riwayat['negative_netral']);
+                                                                $recall = ($recall_positive + $recall_neutral + $recall_negative) / 3;
+                                                                $recall_percent = $recall * 100;
+                                                                ?>
+                                                                Recall = \( \frac{Recall_{positive} + Recall_{neutral} + Recall_{negative}}{3} \) = \( \frac{<?= number_format($recall_positive, 4) ?> + <?= number_format($recall_neutral, 4) ?> + <?= number_format($recall_negative, 4) ?>}{3} \) = <?= number_format($recall, 2) ?>
+                                                            </p>
+
                                                 </div>
                                                 <div class="mb-4">
                                                     Keterangan :
                                                     <ul>
-                                                        <li><b>TP = True Positive</b> <br> Jumlah dokumen yang benar-benar positif dan diidentifikasi dengan tepat sebagai positif oleh model.</li>
-                                                        <li><b>TN = True Negative</b> <br> Jumlah dokumen yang benar-benar negatif dan diidentifikasi dengan tepat sebagai negatif oleh model.</li>
-                                                        <li><b>FP = False Positive</b> <br> Jumlah dokumen yang sebenarnya negatif tetapi salah diklasifikasikan sebagai positif oleh model.</li>
-                                                        <li><b>FN = False Negative</b> <br> Jumlah dokumen yang sebenarnya positif tetapi salah diklasifikasikan sebagai negatif oleh model.</li>
+                                                        <li><b>TP = True Positive</b> <br> Dokumen yang secara aktual positif dan diidentifikasi dengan benar sebagai positif oleh model.</li>
+                                                        <li><b>FN = False Negative</b> <br> Dokumen yang secara aktual positif tetapi diidentifikasi sebagai negatif oleh model.</li>
+                                                        <li><b>FNt = False Negative</b> <br> Dokumen yang secara aktual positif tetapi diidentifikasi sebagai netral oleh model.</li>
+                                                        <li><b>TN = True Negative</b> <br> Dokumen yang secara aktual negatif dan diidentifikasi dengan benar sebagai negatif oleh model.</li>
+                                                        <li><b>FP = False Positive</b> <br> Dokumen yang secara aktual negatif tetapi diidentifikasi sebagai positif oleh model.</li>
+                                                        <li><b>FNt = False Neutral</b> <br> Dokumen yang secara aktual negatif tetapi diidentifikasi sebagai netral oleh model.</li>
+                                                        <li><b>NtP = Neutral Positive</b> <br> Dokumen yang secara aktual netral tetapi diidentifikasi sebagai positif oleh model.</li>
+                                                        <li><b>NtN = Neutral Negative</b> <br> Dokumen yang secara aktual netral tetapi diidentifikasi sebagai negatif oleh model</li>
+                                                        <li><b>TNt = True Netral</b> <br> Dokumen yang secara aktual netral dan diidentifikasi dengan benar sebagai netral oleh model.</li>
                                                     </ul>
                                                 </div>
                                             <?php endforeach; ?>
                                             </div>
                                             <div class="col-6">
                                                 <div class="row">
-                                                    <div class="col-xl-6 col-sm-6">
+                                                    <div class="col-xl-4 col-sm-4">
                                                         <div class="card mini-stat bg-primary">
                                                             <div class="card-body mini-stat-img">
                                                                 <!-- <div class="mini-stat-icon">
@@ -226,7 +255,7 @@ $data = [
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-6 col-sm-6">
+                                                    <div class="col-xl-4 col-sm-4">
                                                         <div class="card mini-stat bg-primary">
                                                             <div class="card-body mini-stat-img">
                                                                 <!-- <div class="mini-stat-icon">
@@ -244,6 +273,36 @@ $data = [
                                                                         $values = [];
                                                                         while ($row = mysqli_fetch_assoc($query)) {
                                                                             $values[] = $row['predict_negative'];
+                                                                        }
+
+                                                                        // Jika Anda ingin menampilkan semua nilai dalam satu elemen HTML
+                                                                        $valuesString = implode(", ", $values);
+                                                                        echo "<h2 class='mb-4 text-white'>$valuesString</h2>";
+                                                                    } // Tambahkan echo di sini
+                                                                    ?>
+                                                                    <!-- <h2 class='mb-4 text-white'>0</h2> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-4">
+                                                        <div class="card mini-stat bg-primary">
+                                                            <div class="card-body mini-stat-img">
+                                                                <!-- <div class="mini-stat-icon">
+                                                                    <i class="mdi mdi-cube-outline float-end"></i>
+                                                                </div> -->
+                                                                <div class="text-white">
+                                                                    <h6 class="text-uppercase mb-3 font-size-16 text-white">Total Prediksi Netral</h6>
+                                                                    <?php
+                                                                    include "koneksi.php";
+                                                                    // Menjalankan query untuk mengambil semua nilai dari kolom `predict_positive` di tabel `riwayat`
+                                                                    $query = mysqli_query($koneksi, "SELECT predict_netral FROM riwayat");
+
+                                                                    // Memastikan query berhasil
+                                                                    if ($query) {
+                                                                        $values = [];
+                                                                        while ($row = mysqli_fetch_assoc($query)) {
+                                                                            $values[] = $row['predict_netral'];
                                                                         }
 
                                                                         // Jika Anda ingin menampilkan semua nilai dalam satu elemen HTML
@@ -286,6 +345,7 @@ $data = [
                         const labels = data.map(item => item.created_at);
                         const positiveData = data.map(item => item.predict_positive);
                         const negativeData = data.map(item => item.predict_negative);
+                        const netralData = data.map(item => item.predict_netral);
 
                         // Membuat bar chart
                         const ctx = document.getElementById('bar').getContext('2d');
@@ -306,6 +366,13 @@ $data = [
                                         data: negativeData,
                                         backgroundColor: '#fb2212',
                                         borderColor: '#fb2212',
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: 'Netral Predictions',
+                                        data: netralData,
+                                        backgroundColor: '#AFAFAF',
+                                        borderColor: '#AFAFAF',
                                         borderWidth: 1
                                     }
                                 ]

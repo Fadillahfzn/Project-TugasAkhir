@@ -428,6 +428,7 @@ echo "Overall Accuracy: {$metrics['overallAccuracy']}\n";
 // Hitung total label positif dan negatif
 $totalPositive = count(array_filter($labels, fn($label) => $label === 'positif'));
 $totalNegative = count(array_filter($labels, fn($label) => $label === 'negatif'));
+$totalNetral = count(array_filter($labels, fn($label) => $label === 'netral'));
 
 
 // Simpan model ke file
@@ -437,8 +438,8 @@ echo $modelFile;
 file_put_contents($modelFile, $modelData);
 
 // Simpan informasi model ke database
-$query = $pdo->prepare("INSERT INTO data_model (model_name, model_path, positive_label, negative_label, created_at) VALUES (:name, :path, :totalPositive, :totalNegative, NOW())");
-$query->execute(['name' => $modelFile, 'path' => $modelFile, 'totalPositive' => $totalPositive, 'totalNegative' => $totalNegative]);
+$query = $pdo->prepare("INSERT INTO data_model (model_name, model_path, positive_label, negative_label, netral_label, created_at) VALUES (:name, :path, :totalPositive, :totalNegative, :totalNetral, NOW())");
+$query->execute(['name' => $modelFile, 'path' => $modelFile, 'totalPositive' => $totalPositive, 'totalNegative' => $totalNegative, 'totalNetral' => $totalNetral]);
 
 
 echo "Model berhasil disimpan.\n";

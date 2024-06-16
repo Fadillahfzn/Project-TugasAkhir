@@ -72,12 +72,12 @@
                                                             include "koneksi.php";
                                                                     
                                                             // Query untuk mengambil semua data dari tabel data_model
-                                                            $query = mysqli_query($koneksi, "SELECT model_name, positive_label, negative_label FROM data_model");
+                                                            $query = mysqli_query($koneksi, "SELECT model_name, positive_label, negative_label, netral_label FROM data_model");
                                                                     
                                                             while ($row = mysqli_fetch_assoc($query)) {
-                                                            $totalLabels = $row['positive_label'] + $row['negative_label'];
+                                                            $totalLabels = $row['positive_label'] + $row['negative_label'] + $row['netral_label'];
                                                             ?>
-                                                            <option value="<?= $totalLabels; ?>,<?= $row['positive_label']; ?>,<?= $row['negative_label']; ?>,<?= $row['model_name']; ?>">
+                                                            <option value="<?= $totalLabels; ?>,<?= $row['positive_label']; ?>, <?= $row['negative_label']; ?>, <?= $row['netral_label']; ?> ,<?= $row['model_name']; ?>">
                                                             <?= $row['model_name']; ?>
                                                             </option>
                                                             <?php
@@ -117,7 +117,7 @@
                                             </div>
                                         </div>
                                         <div class="row sentiment mt-2">
-                                            <div class="col-xl-6 col-sm-6">
+                                            <div class="col-xl-4 col-sm-4">
                                                 <div class="card mini-stat bg-primary">
                                                     <div class="card-body mini-stat-img">
                                                         <div class="text-white">
@@ -127,7 +127,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-6 col-sm-6">
+                                            <div class="col-xl-4 col-sm-4">
                                                 <div class="card mini-stat bg-primary">
                                                     <div class="card-body mini-stat-img">
                                                         <div class="text-white">
@@ -137,9 +137,23 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-xl-4 col-sm-4">
+                                                <div class="card mini-stat bg-primary">
+                                                    <div class="card-body mini-stat-img">
+                                                        <div class="text-white">
+                                                            <h6 class="text-uppercase mb-3 font-size-16 text-white">Sentiment Netral Data Latih</h6>
+                                                            <h2 id="text_netral">0</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <form method="post" action="functions/pengujian.php" style="display: inline;">
-                                                            <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
+                                            <input type="text" name="namaModel" id="namaModel" value="" hidden>
+                                            <input type="text" name="jumlahSentimen" id="jumlahSentimen" value="" hidden>
+                                            <input type="text" name="trainingPositif" id="trainingPositif" value="" hidden>
+                                            <input type="text" name="trainingNegatif" id="trainingNegatif" value="" hidden>
+                                            <input type="text" name="trainingNetral" id="trainingNetral" value="" hidden>
                                             <button type="submit" name="proses" class="btn btn-lg btn-block btn-primary">Mulai Pengujian</button>
                                         </form>           
                                 </div>                        
@@ -155,10 +169,12 @@
                     document.getElementById("text_total").innerHTML = myArray[0];
                     document.getElementById("text_positif").innerHTML = myArray[1];
                     document.getElementById("text_negatif").innerHTML = myArray[2];
-                    document.getElementById("namaModel").value = myArray[3];
+                    document.getElementById("text_netral").innerHTML = myArray[3];
+                    document.getElementById("namaModel").value = myArray[4];
                     document.getElementById("jumlahSentimen").value = myArray[0];
                     document.getElementById("trainingPositif").value = myArray[1];
                     document.getElementById("trainingNegatif").value = myArray[2];
+                    document.getElementById("trainingNetral").value = myArray[3];
                     // document.getElementById("pengujianButton").disabled = false;
                 }
             </script>
