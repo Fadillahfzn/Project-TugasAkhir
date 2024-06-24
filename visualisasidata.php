@@ -80,7 +80,7 @@ $data = [
                             <li class="list-inline-item dropdown notification-list nav-user">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="d-none d-md-inline-block ml-1" style="font-size: 15px;">
-                                        Sentimen Analisis Pelayanan Mudik
+                                    Analisis Sentimen - Text Mining
                                     </span>
                                 </a>
 
@@ -162,7 +162,7 @@ $data = [
                                                 </div>
 
                                                 <div class="mb-4 formula">
-                                                       <!-- Accuracy -->
+                                                            <!-- Perhitungan Accuracy -->
                                                             <p>
                                                                 <?php
                                                                 $accuracy = ($riwayat['true_positive'] + $riwayat['true_negative'] + $riwayat['true_netral']) / 
@@ -177,7 +177,7 @@ $data = [
                                                                 <?= $riwayat['positive_netral'] ?> + <?= $riwayat['netral_positive'] ?> + <?= $riwayat['netral_negative'] ?> + <?= $riwayat['negative_netral'] ?>} \) = <?= number_format($accuracy, 2) ?>
                                                             </p>
 
-                                                            <!-- Precision for Each Class -->
+                                                            <!-- Perhitungan Precision -->
                                                             <p>
                                                                 <?php
                                                                 $precision_positive = $riwayat['true_positive'] / 
@@ -191,7 +191,7 @@ $data = [
                                                                 Precision = \( \frac{Precision_{positive} + Precision_{neutral} + Precision_{negative}}{3} \) = \( \frac{<?= number_format($precision_positive, 4) ?> + <?= number_format($precision_neutral, 4) ?> + <?= number_format($precision_negative, 4) ?>}{3} \) = <?= number_format($precision, 2) ?>
                                                             </p>
 
-                                                            <!-- Recall for Each Class -->
+                                                            <!-- Perhitungan Recall -->
                                                             <p>
                                                                 <?php
                                                                 $recall_positive = $riwayat['true_positive'] / 
@@ -206,6 +206,16 @@ $data = [
                                                                 Recall = \( \frac{Recall_{positive} + Recall_{neutral} + Recall_{negative}}{3} \) = \( \frac{<?= number_format($recall_positive, 4) ?> + <?= number_format($recall_neutral, 4) ?> + <?= number_format($recall_negative, 4) ?>}{3} \) = <?= number_format($recall, 2) ?>
                                                             </p>
 
+                                                            <!-- Perhitungan F1 Score -->
+                                                            <p>
+                                                                <?php
+                                                                $f1_score_positive = 2 * ($precision_positive * $recall_positive) / ($precision_positive + $recall_positive);
+                                                                $f1_score_neutral = 2 * ($precision_neutral * $recall_neutral) / ($precision_neutral + $recall_neutral);
+                                                                $f1_score_negative = 2 * ($precision_negative * $recall_negative) / ($precision_negative + $recall_negative);
+                                                                $f1_score = ($f1_score_positive + $f1_score_neutral + $f1_score_negative) / 3;
+                                                                ?>
+                                                                F1-Score = \( \frac{F1_{\text{positive}} + F1_{\text{neutral}} + F1_{\text{negative}}}{3} \) = \( \frac{<?= number_format($f1_score_positive, 4) ?> + <?= number_format($f1_score_neutral, 4) ?> + <?= number_format($f1_score_negative, 4) ?>}{3} \) = <?= number_format($f1_score, 2) ?>
+                                                            </p>
                                                 </div>
                                                 <div class="mb-4">
                                                     Keterangan :

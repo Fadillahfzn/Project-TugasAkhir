@@ -49,7 +49,7 @@ for record in raw_texts:
         text = clean(text, no_emoji=True)
         text = text.translate(str.maketrans('', '', string.punctuation))
 
-        # Mengganti kata-kata informal
+        # Mengganti kata-kata informal menjadi formal
         words = []
         for word in text.split():
             words.append(kamus.get(word, word))

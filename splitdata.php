@@ -25,7 +25,7 @@
                             <li class="list-inline-item dropdown notification-list nav-user">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="d-none d-md-inline-block ml-1" style="font-size: 15px;">
-                                        Sentimen Analisis Pelayanan Mudik
+                                    Analisis Sentimen - Text Mining
                                     </span>
                                 </a>
 

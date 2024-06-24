@@ -236,9 +236,9 @@
 session_start();  // Mulai session
 
 $host = 'localhost';
-$db = 'taproject'; // Ganti dengan nama database Anda
-$user = 'root'; // Ganti dengan user database Anda
-$pass = ''; // Ganti dengan password database Anda
+$db = 'taproject'; 
+$user = 'root';
+$pass = ''; 
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -273,7 +273,7 @@ function splitData(array $data, $testSize = 0.2) {
     return ['train' => $trainData, 'test' => $testData];
 }
 
-if (!isset($_SESSION['data_split_done'])) {  // Periksa session untuk mencegah split data berulang kali
+if (!isset($_SESSION['data_split_done'])) {  // Memeriksa session untuk mencegah split data berulang kali
     $query = "SELECT * FROM label_lexicon";
     $stmt = $pdo->query($query);
     $data = $stmt->fetchAll();
@@ -299,10 +299,7 @@ if (!isset($_SESSION['data_split_done'])) {  // Periksa session untuk mencegah s
         
         echo "<script>alert('Data berhasil diproses.'); window.location.href='../splitdata';</script>";
 
-        // echo "Jumlah data latih disimpan: " . count($splitData['train']) . "<br>";
-        // echo "Jumlah data uji disimpan: " . count($splitData['test']) . "<br>";
-
-        $_SESSION['data_split_done'] = true;  // Set session untuk menandakan split data sudah dilakukan
+        $_SESSION['data_split_done'] = true;  // Session untuk menandakan split data sudah dilakukan
         
     } catch (PDOException $e) {
         $pdo->rollBack();

@@ -25,7 +25,7 @@
                             <li class="list-inline-item dropdown notification-list nav-user">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="d-none d-md-inline-block ml-1" style="font-size: 15px;">
-                                        Sentimen Analisis Pelayanan Mudik
+                                    Analisis Sentimen - Text Mining
                                     </span>
                                 </a>
 
@@ -58,61 +58,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row label">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="mb-4 row">
-                                            <div class="col-6 p-2">
-                                                <button class="btn btn-primary">Tampilkan Data</button>
-                                            </div>
-                                            <div class="col-6 p-2 text-right">
-                                            <form action="functions/.php?aksi=hapus" method="POST" style="display: inline;">
-                                                <button class="btn mr-2 btn-danger">Hapus Data</button>
-                                            </form>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="">Username</th>
-                                                        <th class="">Clean Text</th>
-                                                        <th class="">Sentimen</th>
-                                                        <!-- <th class="">Action</th> -->
-                                                    </tr>
-                                                </thead>
-                                                
-                                                <tbody>
-                                                    <?php
-                                                    include "koneksi.php";
-                                                    $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM label");
-                                                    while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
-                                                        <tr data-id="<?= $row['id']; ?>">                                                   
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['full_text']; ?></td>
-                                                        <td class="col-2">
-                                                            <select class="form-control sentiment-dropdown" data-id="<?= $row['id']; ?>">
-                                                                <option value="" selected>-- Pilih --</option>
-                                                                <option value="positif" <?php echo ($row['sentiment'] == 'positif') ? 'selected' : ''; ?>>Positif</option>
-                                                                <option value="negatif" <?php echo ($row['sentiment'] == 'negatif') ? 'selected' : ''; ?>>Negatif</option>
-                                                                <option value="netral" <?php echo ($row['sentiment'] == 'netral') ? 'selected' : ''; ?>>Netral</option>
-                                                            </select>
-                                                        </td>
-                                                        <!-- <td></td> -->
-                                                    </tr>
-                                                    <?php   
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         
                         <div class="row label-lexicon">
                             <div class="col-12">
@@ -124,7 +69,7 @@
                                             </div>
                                             <div class="col-6 p-2 text-right">
                                             <form action="functions/labelling.php?aksi=hapus" method="POST" style="display: inline;">
-                                            <button type="button" name="delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Hapus Data</button>
+                                                <button type="button" name="delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Hapus Data</button>
                                             </form>
                                             </div>
                                         </div>

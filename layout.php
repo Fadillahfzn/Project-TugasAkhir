@@ -130,7 +130,7 @@
     <!-- content -->
 
     <footer class="footer">
-        © Ojansky
+        Fadhillah Fauzan Rachman
         <span class="d-none d-md-inline-block">
             - Project Tugas Akhir</span
           >
