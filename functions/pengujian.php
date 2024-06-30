@@ -75,7 +75,7 @@ class TfIdfTransformer {
                     $docCount++;
                 }
             }
-            $this->idf[$i] = log($numDocuments / ($docCount + 1));
+            $this->idf[$i] = log10($numDocuments / ($docCount + 1));
         }
     }
 
@@ -155,9 +155,9 @@ class NaiveBayes {
     public function predict($vector) {
         $scores = [];
         foreach ($this->classProbabilities as $label => $classProbability) {
-            $score = log($classProbability);
+            $score = log10($classProbability);
             foreach ($vector as $termIndex => $count) {
-                $score += $count * log($this->featureProbabilities[$label][$termIndex]); // Posterior untuk perhitungan
+                $score += $count * log10($this->featureProbabilities[$label][$termIndex]); // Posterior untuk perhitungan
             }
             $scores[$label] = $score;
         }

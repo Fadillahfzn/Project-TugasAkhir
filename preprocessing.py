@@ -1,9 +1,9 @@
-import mysql.connector
+import mysql.connector # type: ignore
 import re
 import string
-from cleantext import clean
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from cleantext import clean # type: ignore
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory # type: ignore
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory # type: ignore
 
 # Menyambungkan ke basis data
 mydb = mysql.connector.connect(

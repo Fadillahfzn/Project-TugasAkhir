@@ -77,37 +77,44 @@
                         </li>
                         <li>
                             <a href="preprocessing" class="waves-effect">
-                                <i class="dripicons-home"></i> Preprocessing
+                                <i class="far fa-newspaper"></i> Preprocessing
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
                         </li>
                         <li>
                             <a href="labelling" class="waves-effect">
-                                <i class="dripicons-home"></i> Labeling
+                                <i class="ion ion-md-albums"></i> Labeling
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
                         </li>
+                        <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Kamus </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="kamus_positif">Kata Positif</a></li>
+                                    <li><a href="kamus_negatif">Kata Negatif</a></li>
+                                </ul>
+                            </li>
                         <li>
                             <a href="splitdata" class="waves-effect">
-                                <i class="dripicons-home"></i> Split Data
+                                <i class="fas fa-book-open"></i> Split Data
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
                         </li>
                         <li>
                             <a href="modelling" class="waves-effect">
-                                <i class="dripicons-home"></i> Modelling
+                                <i class="far fa-sticky-note"></i> Modelling
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
                         </li>
                         <li>
                             <a href="pengujian" class="waves-effect">
-                                <i class="dripicons-home"></i> Pengujian
+                                <i class="fas fa-layer-group"></i> Pengujian
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
                         </li>
                         <li>
                             <a href="visualisasidata" class="waves-effect">
-                                <i class="dripicons-home"></i> Visualisasi Data
+                                <i class="far fa-image"></i> Visualisasi Data
                                 <span class="badge badge-success badge-pill float-right"></span>
                             </a>
                         </li>

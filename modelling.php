@@ -5,7 +5,7 @@
                 <div class="topbar">
                     <div class="topbar-left d-none d-lg-block">
                         <div class="text-center">
-                            <a href="dashboard" class="logo text-white" style="font-size: 20px;">Bismillah Project TA</a>
+                            <a href="dashboard" class="logo text-white" style="font-size: 20px;">Project Tugas Akhir</a>
                         </div>
                     </div>
 

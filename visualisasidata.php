@@ -60,7 +60,7 @@ $data = [
                 <div class="topbar">
                     <div class="topbar-left d-none d-lg-block">
                         <div class="text-center">
-                            <a href="dashboard" class="logo text-white" style="font-size: 20px;">Bismillah Project TA</a>
+                            <a href="dashboard" class="logo text-white" style="font-size: 20px;">Project Tugas Akhir</a>
                         </div>
                     </div>
 
@@ -222,8 +222,8 @@ $data = [
                                                     <ul>
                                                         <li><b>TP = True Positive</b> <br> Dokumen yang secara aktual positif dan diidentifikasi dengan benar sebagai positif oleh model.</li>
                                                         <li><b>FN = False Negative</b> <br> Dokumen yang secara aktual positif tetapi diidentifikasi sebagai negatif oleh model.</li>
-                                                        <li><b>FNt = False Negative</b> <br> Dokumen yang secara aktual positif tetapi diidentifikasi sebagai netral oleh model.</li>
-                                                        <li><b>TN = True Negative</b> <br> Dokumen yang secara aktual negatif dan diidentifikasi dengan benar sebagai negatif oleh model.</li>
+                                                        <li><b>PNt = Positive Neutral</b> <br> Dokumen yang secara aktual positif tetapi diidentifikasi sebagai netral oleh model.</li>
+                                                        <li><b>TN = True Negative</b> <br> Dokumen yang secara aktual positif dan diidentifikasi dengan benar sebagai negatif oleh model.</li>
                                                         <li><b>FP = False Positive</b> <br> Dokumen yang secara aktual negatif tetapi diidentifikasi sebagai positif oleh model.</li>
                                                         <li><b>FNt = False Neutral</b> <br> Dokumen yang secara aktual negatif tetapi diidentifikasi sebagai netral oleh model.</li>
                                                         <li><b>NtP = Neutral Positive</b> <br> Dokumen yang secara aktual netral tetapi diidentifikasi sebagai positif oleh model.</li>

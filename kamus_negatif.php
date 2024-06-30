@@ -1,4 +1,4 @@
-        <div class="content-page">
+<div class="content-page">
             <!-- Start content -->
             <div class="content">
                 <!-- Top Bar Start -->
@@ -52,7 +52,7 @@
                                 <div class="page-title-box">
                                     <div class="row align-items-center">
                                         <div class="col-md-8">
-                                            <h3 class="page-title m-0">Preprocessing</h3>
+                                            <h3 class="page-title m-0">Kamus Kata</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                             <div class="col-12">
                             <form method="post" action="" style="display: inline;">
                                                     <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
-                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Preprocessing</button>
+                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Tambah</button>
                                                 </form>
                             </div>
                         </div>
@@ -74,19 +74,18 @@
                                 <div class="card m-b-30 shadow-sm bg-body-tertiary">
                                     <div class="card-header shadow-sm bg-body-tertiary">
                                         <div class="d-flex justify-content-between">
-                                            <h6 class="card-title">Data Preprocessing</h6>
-                                            <form action="functions/preprocessing.php?aksi=hapus" method="POST" style="display: inline;">
+                                            <h6 class="card-title">Kata Negatif</h6>
+                                            <!-- <form action="functions/preprocessing.php?aksi=hapus" method="POST" style="display: inline;">
                                             <button type="button" name="delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Hapus Data</button>
-                                            </form>
+                                            </form> -->
                                         </div>
                                     </div>
                                     <div class="card-body">
                                         <table id="datatable" class="datatable table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>Username</th>
-                                                    <th>Full Text</th>
-                                                    <th>Clean Text</th>
+                                                    <th>No</th>
+                                                    <th>Kata</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -94,14 +93,12 @@
                                                     include "koneksi.php";
 
                                                     $no = 1;
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM proses");
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM sentiment_negatif");
                                                     while ($row = mysqli_fetch_assoc($query)) {
                                                     ?>
                                                             <tr>
-                                                                <!-- <td><?= $no++; ?></td> -->
-                                                                <td><?= $row['username']; ?></td>
-                                                                <td><?= $row['full_text']; ?></td>
-                                                                <td><?= $row['processed_text']; ?></td>
+                                                                <td><?= $no++; ?></td>
+                                                                <td><?= $row['kata']; ?></td>
                                                             </tr>
                                                     <?php
                                                     }

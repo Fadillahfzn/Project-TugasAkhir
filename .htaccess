@@ -11,6 +11,8 @@ RewriteRule ^splitdata$ layout.php?module=splitdata [L]
 RewriteRule ^modelling$ layout.php?module=modelling [L]
 RewriteRule ^pengujian$ layout.php?module=pengujian [L]
 RewriteRule ^visualisasidata$ layout.php?module=visualisasidata [L]
+RewriteRule ^kamus_positif$ layout.php?module=kamus_positif [L]
+RewriteRule ^kamus_negatif$ layout.php?module=kamus_negatif [L]
 
 
 </IfModule>
