@@ -122,9 +122,6 @@ $data = [
                                             <div class="col-6">
                                                 <!-- <h4>asd</h4> -->
                                                 <?php foreach ($data['riwayats'] as $riwayat): ?>
-                                                <div class="mb-4">
-                                                    Tanggal : <b><?= date('d-m-Y H:i:s', strtotime($riwayat['created_at'])) ?></b><br>
-                                                </div>
                                                 <div class="mb-4 table-container">
                                                     <table border="1" style="width: 100%; border-collapse: collapse;">
                                                         <tr align="center">

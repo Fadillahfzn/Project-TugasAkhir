@@ -62,10 +62,9 @@
 
                         <div class="row mb-4">
                             <div class="col-12">
-                            <form method="post" action="" style="display: inline;">
-                                                    <!-- <button type="submit" name="delete" class="btn btn-danger" >Hapus Data</button> -->
-                                                    <button type="submit" name="proses" class="btn btn-block btn-primary">Tambah</button>
-                                                </form>
+                                <form method="post" action="" style="display: inline;">
+                                    <button type="button" name="add" class="btn btn-block btn-primary" data-toggle="modal" data-target="#myModal">Tambah Kata</button>
+                                </form>
                             </div>
                         </div>
 
@@ -158,22 +157,25 @@
         </div>
         <!-- end row -->
 
-            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
+                        <form method="post" action="functions/kamus-kata.php?aksi=tambah-negatif" style="display: inline;">
                         <div class="modal-header">
-                            <h5 class="modal-title mt-0" id="myModalLabel">Modal Heading</h5>
+                            <h5 class="modal-title mt-0" id="myModalLabel">Tambah Kata Negatif</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h6>Apakah anda yakin ingin menghapus data ini?</h6>
+                            <label for="" class="form-label">Input Kata</label>
+                            <!-- <h6>Input Kata</h6> -->
+                            <input type="text" name="kata" class="form-control">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-                            <form method="post" action="functions/preprocessing.php?aksi=hapus" style="display: inline;">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                            
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
                             </form>
                         </div>
                     </div><!-- /.modal-content -->

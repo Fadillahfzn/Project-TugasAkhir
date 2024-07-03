@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Kamus </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-book"></i> <span> Kamus </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="kamus_positif">Kata Positif</a></li>
                                     <li><a href="kamus_negatif">Kata Negatif</a></li>

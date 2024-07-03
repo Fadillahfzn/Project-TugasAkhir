@@ -168,7 +168,7 @@ class NaiveBayes {
 
 $namaModel = isset($_POST['namaModel']) ? $_POST['namaModel'] : '';
 // Muat model dari file
-$modelFile = $namaModel;
+$modelFile = 'model_02-07-2024_05-08-28-PM.model';
 $modelData = file_get_contents($modelFile);
 list($vectorizer, $tfidfTransformer, $naiveBayes) = unserialize($modelData);
 

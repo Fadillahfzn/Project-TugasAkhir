@@ -65,7 +65,9 @@
                                     <div class="card-body">
                                         <div class="mb-4 row">
                                             <div class="col-6 p-2">
-                                                <button class="btn ml-2 btn-primary">Labelling Data Otomatis</button>
+                                                <form action="" method="post">
+                                                <button type="submit" class="btn ml-2 btn-primary">Labelling Data Otomatis</button>
+                                                </form>
                                             </div>
                                             <div class="col-6 p-2 text-right">
                                             <form action="functions/labelling.php?aksi=hapus" method="POST" style="display: inline;">
