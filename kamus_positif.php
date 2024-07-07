@@ -132,9 +132,9 @@
                             <input type="text" name="kata" class="form-control">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Tutup</button>
                             
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Tambah</button>
                             </form>
                         </div>
                     </div><!-- /.modal-content -->

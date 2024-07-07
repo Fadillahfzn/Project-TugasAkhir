@@ -117,7 +117,7 @@ $data = [
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-body">
+                                    <div class="card-body">         
                                         <div class="row">
                                             <div class="col-6">
                                                 <!-- <h4>asd</h4> -->
